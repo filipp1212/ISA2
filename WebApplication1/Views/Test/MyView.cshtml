@@ -1,4 +1,6 @@
-﻿@model Employee
+﻿@using Facade
+@model Facade.EmployeeListViewModel
+
 @{
     Layout = null;
 }
@@ -11,21 +13,22 @@
     <title>MyView</title>
 </head>
 <body>
+    Hello @Model.UserName
+    <hr />
 <div>   
-    <b>Employee Details</b><br />
-    Employee Name: @Model.FirstName @Model.LastName <br />
-    @if (Model.Salary > 15000)
-    {
-        <span style="background-color:yellow">
-            Emplyee Salary:@Model.Salary.ToString("C")
-        </span>
-    }
-    else
-    {
-        <span style="background-color:green">
-            Emplyee Salary: @Model.Salary.ToString("C")
-        </span>
-    }
+    <table>
+        <tr>
+            <th>Employee Name</th>
+            <th>Salary</th>
+        </tr>
+        @foreach (EmployeeViewModel item in Model.Employees)
+        {
+            <tr>
+                <td>@item.EmployeeName</td>
+                <td style="background-color:@item.SalaryColor">@item.Salary</td>
+            </tr>
+        }
+    </table>
 </div>
 </body>
 </html>
