@@ -7,16 +7,18 @@ using Core;
 using Facade;
 using Infra;
 
+
 namespace Labor1.Controllers
 {
     public class TestController : Controller
     {
-       
+        private readonly SalesDbContext db;
+        public TestController(SalesDbContext db) { this.db = db; }
 
         public ActionResult GetView()
         {
             var model = new EmployeeListViewModel();
-            var employees = Employees.Get();
+            List<Employee> employees = Employees.Get(db);
             var list = new List<EmployeeViewModel>();
             foreach(var e in employees)
             {
@@ -27,10 +29,6 @@ namespace Labor1.Controllers
             model.Employees = list;
             model.UserName = "Admin";
             return View("MyView", model);
-
-            
         }
     }
-
-    
 }
