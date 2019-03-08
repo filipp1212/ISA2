@@ -9,7 +9,7 @@ using Infra;
 
 
 namespace Labor1.Controllers
-{
+{  
     public class TestController : Controller
     {
         private readonly SalesDbContext db;
